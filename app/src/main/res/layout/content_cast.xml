@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/body_color">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_cast_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mayumi Tanaka"
+                    android:textSize="35dp"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="10dp" />
+                <TextView
+                    android:id="@+id/text_view_cast_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1955-01-15"
+                    android:textSize="15dp"
+                    android:textColor="#808080"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="5dp"/>
+
+        </LinearLayout>
+
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/image_slider"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:iss_auto_cycle="true"
+            app:iss_title_background="@drawable/iss_title_background"
+            app:iss_period="5000"
+            app:iss_delay="1000"/>
+        <RelativeLayout
+            android:paddingTop="20dp"
+            android:paddingBottom="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp">
+            <ImageView
+                android:id="@+id/img_cast"
+                android:layout_width="150dp"
+                android:layout_height="225dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_movie"/>
+            <LinearLayout
+                android:id="@+id/cast_more_desc"
+                android:layout_width="match_parent"
+                android:layout_height="225dp"
+                android:orientation="horizontal"
+                android:layout_toEndOf="@id/img_cast"
+                android:layout_marginStart="20dp">
+                <TextView
+                    android:id="@+id/tv_cast_desc"
+                    android:layout_width="190dp"
+                    android:layout_height="match_parent"
+                    android:text="Mayumi aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasssssssssssssssssssssssssssssas"
+                    android:textSize="20dp"
+                    android:textColor="@color/app_color"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"/>
+                <ImageView
+                    android:id="@+id/next_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/baseline_keyboard_arrow_right_24"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <include android:id="@+id/cast_extra_info"
+            layout="@layout/film_list_detail"/>
+        <include android:id="@+id/cast_album"
+            layout="@layout/film_list_detail"/>
+        <include android:id="@+id/cast_movie_credits"
+            layout="@layout/film_list_detail"/>
+        <include android:id="@+id/cast_tv_credits"
+            layout="@layout/film_list_detail"/>
+        <include android:id="@+id/film_social_media"
+            layout="@layout/film_list_detail"/>
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

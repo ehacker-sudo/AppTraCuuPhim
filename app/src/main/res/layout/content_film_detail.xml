@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/body_color">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <com.denzcoskun.imageslider.ImageSlider
+            android:background="@color/white"
+            android:id="@+id/image_slider"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:iss_auto_cycle="true"
+            app:iss_title_background="@drawable/iss_title_background"
+            app:iss_period="3000"
+            app:iss_delay="1000"/>
+        <LinearLayout
+            android:paddingTop="20dp"
+            android:paddingBottom="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="15dp"
+            android:gravity="start">
+            <ImageView
+                android:id="@+id/img_movie"
+                android:layout_width="160dp"
+                android:layout_height="250dp"
+                android:layout_gravity="top"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_movie"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toEndOf="@id/img_movie"
+                android:layout_marginStart="20dp">
+                <TextView
+                    android:id="@+id/tv_film_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đảo Hải Tặc"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="15dp"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="15dp">
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@drawable/star_movie"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tv_movie_rate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:text="7.2"
+                        android:textColor="@color/white"
+                        android:layout_gravity="center"
+                        android:textSize="20dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="15dp">
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@drawable/calendar"/>
+                    <TextView
+                        android:id="@+id/tv_movie_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1999-10-20"
+                        android:textSize="20dp"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="15dp">
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@drawable/language"
+                        android:layout_gravity="center"/>
+                    <TextView
+                        android:id="@+id/tv_movie_ep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="English"
+                        android:textSize="20dp"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/white">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycleview_genres"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <include android:id="@+id/film_overview"
+            layout="@layout/film_text_detail"/>
+
+        <include android:id="@+id/film_cast"
+            layout="@layout/film_list_detail"/>
+
+        <include android:id="@+id/film_video"
+            layout="@layout/film_list_detail"/>
+
+        <include android:id="@+id/film_album"
+            layout="@layout/film_list_detail"/>
+
+        <include android:id="@+id/film_extra_info"
+            layout="@layout/film_list_detail"/>
+
+        <include android:id="@+id/film_recommendation"
+            layout="@layout/film_list_detail"/>
+
+        <include android:id="@+id/film_network"
+            layout="@layout/film_list_detail"/>
+
+        <include android:id="@+id/film_company"
+            layout="@layout/film_list_detail"/>
+
+        <include android:id="@+id/film_social_media"
+            layout="@layout/film_list_detail"/>
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
