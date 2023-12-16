@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.CreditActivity">
+    android:orientation="vertical"
+    tools:context=".activity.AdvancedSearchActivity"
+    android:background="@color/body_color">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include android:id="@+id/film_cast"
+        layout="@layout/film_list_detail"/>
+
+    <include android:id="@+id/film_crew"
+        layout="@layout/film_list_detail"/>
+</LinearLayout>

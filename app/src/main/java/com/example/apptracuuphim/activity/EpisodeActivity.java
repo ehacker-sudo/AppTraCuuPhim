@@ -16,12 +16,15 @@ import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.apptracuuphim.R;
 import com.example.apptracuuphim.adapter.CastAdapter;
+import com.example.apptracuuphim.adapter.PeopleAdapter;
 import com.example.apptracuuphim.adapter.SocialMediaAdapter;
 import com.example.apptracuuphim.api.EpisodeApi;
 import com.example.apptracuuphim.databinding.ActivityEpisodeBinding;
 import com.example.apptracuuphim.listener.CastListener;
+import com.example.apptracuuphim.listener.CreditListener;
 import com.example.apptracuuphim.listener.SocialMediaListener;
 import com.example.apptracuuphim.model.Credit.Cast;
+import com.example.apptracuuphim.model.Credit.Credit;
 import com.example.apptracuuphim.model.Film.Episode;
 import com.example.apptracuuphim.model.Film.ImageType;
 import com.example.apptracuuphim.model.SocialMedia.Media;
@@ -93,14 +96,14 @@ public class EpisodeActivity extends AppCompatActivity {
                         );
 
                         binding.contentEpisode.filmCast.recycleviewFilm.setAdapter(
-                                new CastAdapter(
+                                new PeopleAdapter(
                                         EpisodeActivity.this,
                                         creditsResource.getCast(),
-                                        new CastListener() {
+                                        new CreditListener() {
                                             @Override
-                                            public void onClick(Cast cast) {
+                                            public void onClick(Credit credit) {
                                                 Intent intent = new Intent(EpisodeActivity.this, CastActivity.class);
-                                                intent.putExtra("id",cast.getId());
+                                                intent.putExtra("id",credit.getId());
                                                 startActivity(intent);
                                             }
                                         }

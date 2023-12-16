@@ -1,28 +1,29 @@
 package com.example.apptracuuphim.resource;
 
 import com.example.apptracuuphim.model.Credit.Cast;
+import com.example.apptracuuphim.model.Credit.Credit;
 import com.example.apptracuuphim.model.Credit.Crew;
 
 import java.util.List;
 
 public class CreditsResource {
-    private List<Cast> cast;
-    private List<Crew> crew;
+    private List<Credit> cast;
+    private List<Credit> crew;
     private long id;
 
-    public List<Cast> getCast() {
+    public List<Credit> getCast() {
         return cast;
     }
 
-    public void setCast(List<Cast> cast) {
+    public void setCast(List<Credit> cast) {
         this.cast = cast;
     }
 
-    public List<Crew> getCrew() {
+    public List<Credit> getCrew() {
         return crew;
     }
 
-    public void setCrew(List<Crew> crew) {
+    public void setCrew(List<Credit> crew) {
         this.crew = crew;
     }
 
@@ -30,7 +31,7 @@ public class CreditsResource {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 }

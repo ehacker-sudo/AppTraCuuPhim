@@ -21,6 +21,7 @@ import com.example.apptracuuphim.R;
 import com.example.apptracuuphim.adapter.AlbumAdapter;
 import com.example.apptracuuphim.adapter.CastAdapter;
 import com.example.apptracuuphim.adapter.CompanyAdapter;
+import com.example.apptracuuphim.adapter.PeopleAdapter;
 import com.example.apptracuuphim.adapter.ExtraDetailAdapter;
 import com.example.apptracuuphim.adapter.GenresAdapter;
 import com.example.apptracuuphim.adapter.ItemAdapter;
@@ -35,6 +36,7 @@ import com.example.apptracuuphim.api.MovieApi;
 import com.example.apptracuuphim.api.TvApi;
 import com.example.apptracuuphim.databinding.ActivityFilmDetailBinding;
 import com.example.apptracuuphim.listener.CompanyListener;
+import com.example.apptracuuphim.listener.CreditListener;
 import com.example.apptracuuphim.listener.FilmClickListener;
 import com.example.apptracuuphim.listener.GenresListener;
 import com.example.apptracuuphim.listener.MiniItemListener;
@@ -43,6 +45,7 @@ import com.example.apptracuuphim.listener.SocialMediaListener;
 import com.example.apptracuuphim.listener.VideoListener;
 import com.example.apptracuuphim.model.Company.Company;
 import com.example.apptracuuphim.model.Credit.Cast;
+import com.example.apptracuuphim.model.Credit.Credit;
 import com.example.apptracuuphim.model.Film.ExtraInfo;
 import com.example.apptracuuphim.model.Film.Film;
 import com.example.apptracuuphim.model.Film.Genres;
@@ -99,6 +102,17 @@ public class FilmDetailActivity extends AppCompatActivity {
                             // Overview
                             binding.contentFilm.filmOverview.filmTitle.setText("Giới thiệu phim");
                             binding.contentFilm.filmOverview.tvFilm.setText(tv.getOverview());
+
+                            // Dàn diễn viên
+                            binding.contentFilm.filmCast.action.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(FilmDetailActivity.this, CreditActivity.class);
+                                    intent.putExtra("id",tv.getId());
+                                    intent.putExtra("media_type","tv");
+                                    startActivity(intent);
+                                }
+                            });
 
                             // Chi tiết
                             binding.contentFilm.filmExtraInfo.title.setText("Chi tiết");
@@ -407,14 +421,14 @@ public class FilmDetailActivity extends AppCompatActivity {
                             );
 
                             binding.contentFilm.filmCast.recycleviewFilm.setAdapter(
-                                    new CastAdapter(
+                                    new PeopleAdapter(
                                             FilmDetailActivity.this,
                                             creditsResource.getCast(),
-                                            new CastListener() {
+                                            new CreditListener() {
                                                 @Override
-                                                public void onClick(Cast cast) {
+                                                public void onClick(Credit credit) {
                                                     Intent intent = new Intent(FilmDetailActivity.this, CastActivity.class);
-                                                    intent.putExtra("id",cast.getId());
+                                                    intent.putExtra("id",credit.getId());
                                                     startActivity(intent);
                                                 }
                                             }
@@ -519,6 +533,17 @@ public class FilmDetailActivity extends AppCompatActivity {
                             // Overview
                             binding.contentFilm.filmOverview.filmTitle.setText("Giới thiệu phim");
                             binding.contentFilm.filmOverview.tvFilm.setText(movie.getOverview());
+
+                            // Dàn diễn viên
+                            binding.contentFilm.filmCast.action.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(FilmDetailActivity.this, CreditActivity.class);
+                                    intent.putExtra("id",movie.getId());
+                                    intent.putExtra("media_type","movie");
+                                    startActivity(intent);
+                                }
+                            });
 
 //                            // Chi tiết
                             binding.contentFilm.filmExtraInfo.title.setText("Chi tiết");
@@ -719,14 +744,14 @@ public class FilmDetailActivity extends AppCompatActivity {
                             );
 
                             binding.contentFilm.filmCast.recycleviewFilm.setAdapter(
-                                    new CastAdapter(
+                                    new PeopleAdapter(
                                             FilmDetailActivity.this,
                                             creditsResource.getCast(),
-                                            new CastListener() {
+                                            new CreditListener() {
                                                 @Override
-                                                public void onClick(Cast cast) {
+                                                public void onClick(Credit credit) {
                                                     Intent intent = new Intent(FilmDetailActivity.this, CastActivity.class);
-                                                    intent.putExtra("id",cast.getId());
+                                                    intent.putExtra("id",credit.getId());
                                                     startActivity(intent);
                                                 }
                                             }
@@ -862,8 +887,6 @@ public class FilmDetailActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
 
     }
 
