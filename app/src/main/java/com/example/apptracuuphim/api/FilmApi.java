@@ -1,7 +1,9 @@
 package com.example.apptracuuphim.api;
 
 import com.example.apptracuuphim.model.Film.Film;
+import com.example.apptracuuphim.model.Film.Genres;
 import com.example.apptracuuphim.model.Film.ImageType;
+import com.example.apptracuuphim.model.Film.Keywords;
 import com.example.apptracuuphim.model.Movie.Movie;
 import com.example.apptracuuphim.model.SocialMedia.SocialMedia;
 import com.example.apptracuuphim.model.Tv.Tv;
@@ -104,7 +106,8 @@ public interface FilmApi {
     })
     @GET("3/genre/{media_type}/list")
     Call<Film> getGenresList(
-            @Path("media_type") String media_type
+            @Path("media_type") String media_type,
+            @Query("language") String language
     );
 
 
@@ -123,7 +126,18 @@ public interface FilmApi {
             @Query("with_runtime.lte") int with_runtime_lte,
             @Query("with_runtime.gte") int with_runtime_gte,
             @Query("vote_average.gte") int vote_average_gte,
-            @Query("vote_count.gte") int vote_count_gte
+            @Query("vote_count.gte") int vote_count_gte,
+            @Query("with_keywords") String with_keywords
 
+    );
+
+    @Headers({
+            "Accept: application/json",
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
+    })
+    @GET("3/{media_type}/{media_id}/keywords")
+    Call<Keywords> getKeywords(
+            @Path("media_type") String media_type,
+            @Path("media_id") int media_id
     );
 }

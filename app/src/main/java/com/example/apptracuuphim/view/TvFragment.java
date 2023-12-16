@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.apptracuuphim.activity.AdvancedSearchActivity;
 import com.example.apptracuuphim.activity.FilmDetailActivity;
 import com.example.apptracuuphim.adapter.ItemAdapter;
 import com.example.apptracuuphim.api.FilmApi;
@@ -220,6 +221,14 @@ public class TvFragment extends Fragment {
                     return true;
                 }
                 return false;
+            }
+        });
+
+        binding.searchView.searchAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AdvancedSearchActivity.class);
+                startActivity(intent);
             }
         });
         super.onViewCreated(view, savedInstanceState);

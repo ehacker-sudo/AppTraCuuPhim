@@ -56,11 +56,12 @@ public class SearchCategoryAdapter extends RecyclerView.Adapter<SearchCategoryAd
                     collectListener.OnClickListener(holder);
                 }
             });
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-            holder.recycleViewItem.setLayoutManager(linearLayoutManager);
-            ItemSearchAdapter itemSearchAdapter = new ItemSearchAdapter(context,item.getGenresList(),item.getNameGroup());
-            itemSearchAdapter.setSecondCollectListener(collectListener);
-            holder.recycleViewItem.setAdapter(itemSearchAdapter);
+            holder.recycleViewItem.setLayoutManager(
+                    new LinearLayoutManager(context)
+            );
+            holder.recycleViewItem.setAdapter(
+                    new ItemSearchAdapter(context,item.getGenresList(),item.getNameGroup(),collectListener)
+            );
 
 
         }

@@ -95,10 +95,10 @@ public class AdvancedSearchActivity extends AppCompatActivity implements Callbac
                         } else {
                             if (stringList.get(0).getName().equals("Phim truyền hình")) {
                                 itemMediaType = "tv";
-                                FilmApi.film.getGenresList("tv").enqueue(AdvancedSearchActivity.this);
+                                FilmApi.film.getGenresList("tv","vi-Vn").enqueue(AdvancedSearchActivity.this);
                             } else {
                                 itemMediaType = "movie";
-                                FilmApi.film.getGenresList("movie").enqueue(AdvancedSearchActivity.this);
+                                FilmApi.film.getGenresList("movie","vi-Vn").enqueue(AdvancedSearchActivity.this);
                             }
                         }
                     }

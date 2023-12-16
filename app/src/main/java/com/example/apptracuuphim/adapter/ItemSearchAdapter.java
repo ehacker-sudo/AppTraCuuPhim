@@ -24,13 +24,10 @@ public class ItemSearchAdapter extends RecyclerView.Adapter<ItemSearchAdapter.Vi
     private List<Genres> arrayList1 = new ArrayList<>();
 
 
-    public ItemSearchAdapter(Context context, List<Genres> genresList,String title) {
+    public ItemSearchAdapter(Context context, List<Genres> genresList,String title,SecondCollectListener secondCollectListener) {
         this.context = context;
         this.genresList = genresList;
         this.title = title;
-    }
-
-    public void setSecondCollectListener(SecondCollectListener secondCollectListener) {
         this.secondCollectListener = secondCollectListener;
     }
 

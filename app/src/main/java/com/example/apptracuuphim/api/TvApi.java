@@ -1,5 +1,7 @@
 package com.example.apptracuuphim.api;
 
+import com.example.apptracuuphim.model.Certification.MovieCertification;
+import com.example.apptracuuphim.model.Certification.TvCertification;
 import com.example.apptracuuphim.model.Film.Film;
 import com.example.apptracuuphim.model.Film.ImageType;
 import com.example.apptracuuphim.model.Film.Video;
@@ -129,5 +131,14 @@ public interface TvApi {
             @Path("series_id") int series_id,
             @Path("season_number") int season_number,
             @Query("language") String language
+    );
+
+    @Headers({
+            "Accept: application/json",
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
+    })
+    @GET("3/tv/{series_id}/content_ratings")
+    Call<FilmResource<TvCertification>> getTvContentRatings(
+            @Path("series_id") int series_id
     );
 }

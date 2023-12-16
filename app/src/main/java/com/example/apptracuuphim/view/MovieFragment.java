@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.apptracuuphim.activity.AdvancedSearchActivity;
 import com.example.apptracuuphim.activity.FilmDetailActivity;
 import com.example.apptracuuphim.adapter.ItemAdapter;
 import com.example.apptracuuphim.api.FilmApi;
@@ -221,6 +222,14 @@ public class MovieFragment extends Fragment {
                     return true;
                 }
                 return false;
+            }
+        });
+
+        binding.searchView.searchAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AdvancedSearchActivity.class);
+                startActivity(intent);
             }
         });
         super.onViewCreated(view, savedInstanceState);

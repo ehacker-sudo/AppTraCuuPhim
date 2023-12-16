@@ -25,6 +25,7 @@ import com.example.apptracuuphim.api.MovieApi;
 import com.example.apptracuuphim.api.TvApi;
 import com.example.apptracuuphim.databinding.FragmentHomeBinding;
 import com.example.apptracuuphim.listener.FilmClickListener;
+import com.example.apptracuuphim.model.Certification.TvCertification;
 import com.example.apptracuuphim.model.Film.Film;
 import com.example.apptracuuphim.model.Movie.Movie;
 import com.example.apptracuuphim.model.Tv.Tv;

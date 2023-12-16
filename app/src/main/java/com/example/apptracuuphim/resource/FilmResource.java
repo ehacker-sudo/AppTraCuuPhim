@@ -3,6 +3,7 @@ package com.example.apptracuuphim.resource;
 import java.util.List;
 
 public class FilmResource<T> {
+    private int id;
     private int page;
     private List<T> results;
     private int total_pages;
@@ -13,6 +14,14 @@ public class FilmResource<T> {
         this.results = results;
         this.total_pages = total_pages;
         this.total_results = total_results;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPage() {

@@ -39,7 +39,7 @@
                 android:layout_alignParentRight="true"/>
         </RelativeLayout>
 
-        <LinearLayout
+        <RadioGroup
             android:id="@+id/tv_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                 android:id="@+id/recycle_view_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-        </LinearLayout>
+        </RadioGroup>
 
     </LinearLayout>
 </RelativeLayout>

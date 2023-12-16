@@ -22,6 +22,7 @@ import com.example.apptracuuphim.adapter.AlbumAdapter;
 import com.example.apptracuuphim.adapter.CastAdapter;
 import com.example.apptracuuphim.adapter.CompanyAdapter;
 import com.example.apptracuuphim.adapter.ExtraDetailAdapter;
+import com.example.apptracuuphim.adapter.GenresAdapter;
 import com.example.apptracuuphim.adapter.ItemAdapter;
 import com.example.apptracuuphim.adapter.NetworkAdapter;
 import com.example.apptracuuphim.adapter.SocialMediaAdapter;
@@ -35,6 +36,7 @@ import com.example.apptracuuphim.api.TvApi;
 import com.example.apptracuuphim.databinding.ActivityFilmDetailBinding;
 import com.example.apptracuuphim.listener.CompanyListener;
 import com.example.apptracuuphim.listener.FilmClickListener;
+import com.example.apptracuuphim.listener.GenresListener;
 import com.example.apptracuuphim.listener.MiniItemListener;
 import com.example.apptracuuphim.listener.NetworkListener;
 import com.example.apptracuuphim.listener.SocialMediaListener;
@@ -43,7 +45,9 @@ import com.example.apptracuuphim.model.Company.Company;
 import com.example.apptracuuphim.model.Credit.Cast;
 import com.example.apptracuuphim.model.Film.ExtraInfo;
 import com.example.apptracuuphim.model.Film.Film;
+import com.example.apptracuuphim.model.Film.Genres;
 import com.example.apptracuuphim.model.Film.ImageType;
+import com.example.apptracuuphim.model.Film.Keywords;
 import com.example.apptracuuphim.model.Film.Video;
 import com.example.apptracuuphim.model.Movie.Movie;
 import com.example.apptracuuphim.model.Network.Network;
@@ -53,6 +57,7 @@ import com.example.apptracuuphim.model.Tv.Tv;
 import com.example.apptracuuphim.resource.CreditsResource;
 import com.example.apptracuuphim.resource.FilmResource;
 
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -147,6 +152,27 @@ public class FilmDetailActivity extends AppCompatActivity {
                             }
                             ExtraDetailAdapter extraDetailAdapter = new ExtraDetailAdapter(extraInfos);
                             binding.contentFilm.filmExtraInfo.recycleviewFilm.setAdapter(extraDetailAdapter);
+
+                            // Genres
+                            binding.contentFilm.filmGenres.title.setText("Thể loại");
+                            binding.contentFilm.filmGenres.recycleviewFilm.setLayoutManager(
+                                    new LinearLayoutManager(FilmDetailActivity.this, RecyclerView.HORIZONTAL,false)
+                            );
+
+                            binding.contentFilm.filmGenres.recycleviewFilm.setAdapter(
+                                    new GenresAdapter(
+                                            tv.getGenres(),
+                                            new GenresListener() {
+                                                @Override
+                                                public void onClick(Genres genres) {
+                                                    Intent intent = new Intent(FilmDetailActivity.this, AllItemActivity.class);
+                                                    intent.putExtra("media_type","tv");
+                                                    intent.putExtra("with_genres",String.valueOf(genres.getId()));
+                                                    startActivity(intent);
+                                                }
+                                            }
+                                    )
+                            );
 
                             // Network
                             binding.contentFilm.filmNetwork.title.setText("Kênh truyền hình");
@@ -259,7 +285,7 @@ public class FilmDetailActivity extends AppCompatActivity {
                         }
                     });
 
-            TvApi.tv.getTVSeriesImages(getIntent().getIntExtra("id",37854),"en")
+            TvApi.tv.getTVSeriesImages(getIntent().getIntExtra("id",37854),"")
                     .enqueue(new Callback<ImageType>() {
                         @Override
                         public void onResponse(Call<ImageType> call, Response<ImageType> response) {
@@ -518,6 +544,27 @@ public class FilmDetailActivity extends AppCompatActivity {
                             ExtraDetailAdapter extraDetailAdapter = new ExtraDetailAdapter(extraInfos);
                             binding.contentFilm.filmExtraInfo.recycleviewFilm.setAdapter(extraDetailAdapter);
 
+                            // Genres
+                            binding.contentFilm.filmGenres.title.setText("Thể loại");
+                            binding.contentFilm.filmGenres.recycleviewFilm.setLayoutManager(
+                                    new LinearLayoutManager(FilmDetailActivity.this, RecyclerView.HORIZONTAL,false)
+                            );
+
+                            binding.contentFilm.filmGenres.recycleviewFilm.setAdapter(
+                                    new GenresAdapter(
+                                            movie.getGenres(),
+                                            new GenresListener() {
+                                                @Override
+                                                public void onClick(Genres genres) {
+                                                    Intent intent = new Intent(FilmDetailActivity.this, AllItemActivity.class);
+                                                    intent.putExtra("media_type","movie");
+                                                    intent.putExtra("with_genres",String.valueOf(genres.getId()));
+                                                    startActivity(intent);
+                                                }
+                                            }
+                                    )
+                            );
+
                             // Company
                             binding.contentFilm.filmCompany.title.setText("Các công ty sản xuât");
                             binding.contentFilm.filmCompany.recycleviewFilm.setLayoutManager(
@@ -581,7 +628,7 @@ public class FilmDetailActivity extends AppCompatActivity {
                         }
                     });
 
-            MovieApi.movie.getMovieImages(getIntent().getIntExtra("id",37854),"en")
+            MovieApi.movie.getMovieImages(getIntent().getIntExtra("id",37854),"")
                     .enqueue(new Callback<ImageType>() {
                         @Override
                         public void onResponse(Call<ImageType> call, Response<ImageType> response) {
@@ -764,6 +811,46 @@ public class FilmDetailActivity extends AppCompatActivity {
             binding.contentFilm.filmVideo.getRoot().setVisibility(View.GONE);
             binding.contentFilm.filmNetwork.getRoot().setVisibility(View.GONE);
         }
+
+
+        FilmApi.film.getKeywords(getIntent().getStringExtra("media_type"),getIntent().getIntExtra("id",37854))
+                        .enqueue(new Callback<Keywords>() {
+                            @Override
+                            public void onResponse(Call<Keywords> call, Response<Keywords> response) {
+                                Keywords keywords = response.body();
+                                List<Genres> keywordList = new ArrayList<>();
+                                if (getIntent().getStringExtra("media_type").equals("tv")) {
+                                    keywordList = keywords.getResults();
+                                } else if (getIntent().getStringExtra("media_type").equals("movie")) {
+                                    keywordList = keywords.getKeywords();
+                                }
+                                // Keyword
+                                binding.contentFilm.filmKeyword.title.setText("Từ khóa");
+                                binding.contentFilm.filmKeyword.recycleviewFilm.setLayoutManager(
+                                        new LinearLayoutManager(FilmDetailActivity.this, RecyclerView.HORIZONTAL,false)
+                                );
+
+                                binding.contentFilm.filmKeyword.recycleviewFilm.setAdapter(
+                                        new GenresAdapter(
+                                                keywordList,
+                                                new GenresListener() {
+                                                    @Override
+                                                    public void onClick(Genres genres) {
+                                                        Intent intent = new Intent(FilmDetailActivity.this, AllItemActivity.class);
+                                                        intent.putExtra("media_type","movie");
+                                                        intent.putExtra("with_keywords",String.valueOf(genres.getId()));
+                                                        startActivity(intent);
+                                                    }
+                                                }
+                                        )
+                                );
+                            }
+
+                            @Override
+                            public void onFailure(Call<Keywords> call, Throwable t) {
+
+                            }
+                        });
 
         binding.contentFilm.filmOverview.filmDetailAction.setVisibility(View.GONE);
         binding.contentFilm.filmExtraInfo.action.setVisibility(View.GONE);

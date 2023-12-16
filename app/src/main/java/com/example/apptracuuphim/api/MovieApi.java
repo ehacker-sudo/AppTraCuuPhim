@@ -1,5 +1,6 @@
 package com.example.apptracuuphim.api;
 
+import com.example.apptracuuphim.model.Certification.MovieCertification;
 import com.example.apptracuuphim.model.Film.Film;
 import com.example.apptracuuphim.model.Film.ImageType;
 import com.example.apptracuuphim.model.Movie.Movie;
@@ -123,4 +124,13 @@ public interface MovieApi {
     Call<SocialMedia> getMovieExternalIDs(
             @Path("movie_id") int movie_id
     );
+    @Headers({
+            "Accept: application/json",
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
+    })
+    @GET("3/movie/{movie_id}/release_dates")
+    Call<FilmResource<MovieCertification>> getMovieReleaseDate(
+            @Path("movie_id") int movie_id
+    );
+
 }

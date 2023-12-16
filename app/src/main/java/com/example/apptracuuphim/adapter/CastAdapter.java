@@ -56,7 +56,9 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.ViewHolder> {
             return;
         }
         viewHolder.tvCastName.setText(cast.getName());
-        Glide.with(context).load("https://image.tmdb.org/t/p/w500" + cast.getProfile_path()).into(viewHolder.castImage);
+        if (cast.getProfile_path() != null) {
+            Glide.with(context).load("https://image.tmdb.org/t/p/w500" + cast.getProfile_path()).into(viewHolder.castImage);
+        }
         viewHolder.tvCastRole.setText(cast.getCharacter());
         viewHolder.cardMovie.setOnClickListener(new View.OnClickListener() {
             @Override

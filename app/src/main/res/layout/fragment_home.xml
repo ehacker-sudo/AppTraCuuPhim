@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
         <include android:id="@+id/search_view"
             layout="@layout/search_view"/>
         <include android:id="@+id/film_trend"

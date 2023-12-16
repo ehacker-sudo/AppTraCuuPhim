@@ -30,6 +30,7 @@ public class AllItemActivity extends AppCompatActivity implements Callback<FilmR
     private int with_runtime_gte;
     private int vote_average_gte;
     private int vote_count_gte;
+    private String with_keywords;
     private List<Film> filmList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +51,13 @@ public class AllItemActivity extends AppCompatActivity implements Callback<FilmR
         with_runtime_gte = getIntent().getIntExtra("with_runtime_gte",0);
         vote_average_gte = getIntent().getIntExtra("vote_average_gte",0);
         vote_count_gte = getIntent().getIntExtra("vote_count_gte",0);
+        with_keywords = getIntent().getStringExtra("with_keywords");
 
         Toast.makeText(this, String.valueOf(vote_average_gte) + " | " + String.valueOf(vote_count_gte), Toast.LENGTH_SHORT).show();
         binding.toolbar.toolbarTitle.setText("Tìm kiếm phim");
 
         if (!media_type.isEmpty()) {
-            FilmApi.film.getDiscover(media_type,"en-US", 1,false,"popularity.desc",with_genres,with_runtime_lte,with_runtime_gte,vote_average_gte,vote_count_gte).enqueue(this);
+            FilmApi.film.getDiscover(media_type,"en-US", 1,false,"popularity.desc",with_genres,with_runtime_lte,with_runtime_gte,vote_average_gte,vote_count_gte,with_keywords).enqueue(this);
         }
 
 

@@ -138,6 +138,12 @@
         <include android:id="@+id/film_album"
             layout="@layout/film_list_detail"/>
 
+        <include android:id="@+id/film_genres"
+            layout="@layout/film_list_detail"/>
+
+        <include android:id="@+id/film_keyword"
+            layout="@layout/film_list_detail"/>
+
         <include android:id="@+id/film_extra_info"
             layout="@layout/film_list_detail"/>
 
