@@ -10,9 +10,7 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
 
-    <include android:id="@+id/film_cast"
-        layout="@layout/film_list_detail"/>
-
-    <include android:id="@+id/film_crew"
-        layout="@layout/film_list_detail"/>
+    <include
+        android:id="@+id/content_credit"
+        layout="@layout/content_credit"/>
 </LinearLayout>

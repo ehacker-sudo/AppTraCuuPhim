@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <include android:id="@+id/film_cast"
+            layout="@layout/film_list_detail"/>
+
+        <include android:id="@+id/film_crew"
+            layout="@layout/film_list_detail"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

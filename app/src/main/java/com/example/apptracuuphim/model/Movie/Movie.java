@@ -13,6 +13,10 @@ public class Movie extends Film{
     public Long revenue;
     public List<Company> production_companies;
 
+    public Movie(int id, String name, String poster_path, String media_type) {
+        super(id, name, poster_path, media_type);
+    }
+
     public void setBudget(long budget) {
         this.budget = budget;
     }

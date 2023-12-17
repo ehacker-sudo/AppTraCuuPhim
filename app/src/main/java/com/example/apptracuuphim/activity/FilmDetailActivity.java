@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -31,6 +33,7 @@ import com.example.apptracuuphim.adapter.VideoAdapter;
 import com.example.apptracuuphim.api.CompanyApi;
 import com.example.apptracuuphim.api.FilmApi;
 import com.example.apptracuuphim.api.NetworkApi;
+import com.example.apptracuuphim.dialog.RateUsDialog;
 import com.example.apptracuuphim.listener.CastListener;
 import com.example.apptracuuphim.api.MovieApi;
 import com.example.apptracuuphim.api.TvApi;
@@ -92,6 +95,28 @@ public class FilmDetailActivity extends AppCompatActivity {
                             binding.contentFilm.tvFilmName.setText(tv.getName());
                             // Rate
                             binding.contentFilm.tvMovieRate.setText(Double.toString(tv.getVote_average()));
+
+                            binding.contentFilm.rateAction.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    RateUsDialog ratingBar = new RateUsDialog(
+                                            FilmDetailActivity.this,
+                                            new Film(tv.getId(), tv.getName(), tv.getPoster_path(), "tv"),
+                                            new FilmClickListener() {
+                                                @Override
+                                                public void onClickItemMovie(Film film) {
+                                                    binding.contentFilm.tvRatingFilm.setText(String.valueOf(film.getRate_value()) + "/10");
+                                                    binding.contentFilm.imgGetRate.setImageResource(R.drawable.rate_star);
+                                                }
+                                            });
+                                    ratingBar.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+                                    ratingBar.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                                    ratingBar.setCancelable(false);
+                                    ratingBar.show();
+                                }
+                            });
+
                             // Data
                             binding.contentFilm.tvMovieDate.setText(tv.getFirst_air_date());
                             // Poster
@@ -109,6 +134,7 @@ public class FilmDetailActivity extends AppCompatActivity {
                                 public void onClick(View v) {
                                     Intent intent = new Intent(FilmDetailActivity.this, CreditActivity.class);
                                     intent.putExtra("id",tv.getId());
+                                    intent.putExtra("name",tv.getName());
                                     intent.putExtra("media_type","tv");
                                     startActivity(intent);
                                 }
@@ -526,6 +552,28 @@ public class FilmDetailActivity extends AppCompatActivity {
                             binding.contentFilm.tvFilmName.setText(movie.getTitle());
                             binding.contentFilm.tvMovieDate.setText(movie.getRelease_date());
                             binding.contentFilm.tvMovieRate.setText(Double.toString(movie.getVote_average()));
+
+                            // Rating
+                            binding.contentFilm.rateAction.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    RateUsDialog ratingBar = new RateUsDialog(
+                                            FilmDetailActivity.this,
+                                            new Film(movie.getId(), movie.getTitle(), movie.getPoster_path(), "movie"),
+                                            new FilmClickListener() {
+                                                @Override
+                                                public void onClickItemMovie(Film film) {
+                                                    binding.contentFilm.tvRatingFilm.setText(String.valueOf(film.getRate_value()) + "/10");
+                                                }
+                                            });
+                                    ratingBar.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+                                    ratingBar.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                                    ratingBar.setCancelable(false);
+                                    ratingBar.show();
+                                }
+                            });
+
                             Glide.with(FilmDetailActivity.this)
                                     .load("https://image.tmdb.org/t/p/w500" + movie.getPoster_path())
                                     .into(binding.contentFilm.imgMovie);
@@ -540,6 +588,7 @@ public class FilmDetailActivity extends AppCompatActivity {
                                 public void onClick(View v) {
                                     Intent intent = new Intent(FilmDetailActivity.this, CreditActivity.class);
                                     intent.putExtra("id",movie.getId());
+                                    intent.putExtra("name",movie.getTitle());
                                     intent.putExtra("media_type","movie");
                                     startActivity(intent);
                                 }
@@ -879,8 +928,6 @@ public class FilmDetailActivity extends AppCompatActivity {
 
         binding.contentFilm.filmOverview.filmDetailAction.setVisibility(View.GONE);
         binding.contentFilm.filmExtraInfo.action.setVisibility(View.GONE);
-
-
         binding.toolbar.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

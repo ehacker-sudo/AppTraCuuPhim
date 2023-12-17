@@ -24,6 +24,22 @@ public class Film{
 //    protected String origin_country;
 //    protected boolean video;
     protected String profile_path;
+    protected int rate_value;
+
+    public int getRate_value() {
+        return rate_value;
+    }
+
+    public void setRate_value(int rate_value) {
+        this.rate_value = rate_value;
+    }
+
+    public Film(int id, String name, String poster_path, String media_type) {
+        this.id = id;
+        this.name = name;
+        this.poster_path = poster_path;
+        this.media_type = media_type;
+    }
 
     public String getTitle() {
         return title;

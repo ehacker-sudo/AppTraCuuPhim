@@ -10,14 +10,19 @@ import com.example.apptracuuphim.model.Tv.Tv;
 import com.example.apptracuuphim.resource.CreditsResource;
 import com.example.apptracuuphim.resource.FilmCreditResource;
 import com.example.apptracuuphim.resource.FilmResource;
+import com.example.apptracuuphim.resource.RateResource;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -146,10 +151,22 @@ public interface FilmApi {
             "Accept: application/json",
             "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
     })
-    @GET("3/{media_type)/{media_id}/credits")
+    @GET("3/{media_type}/{series_id}/credits")
     Call<CreditsResource> getCredits(
             @Path("media_type") String media_type,
-            @Path("media_id") int media_id,
+            @Path("series_id") int series_id,
             @Query("language") String language
+    );
+
+    @Headers({
+            "Accept: application/json",
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
+    })
+    @FormUrlEncoded
+    @POST("3/{media_type}/{media_id}/rating")
+    Call<RateResource> AddRating(
+            @Path("media_type") String media_type,
+            @Path("media_id") int media_id,
+            @Field("value") int value
     );
 }

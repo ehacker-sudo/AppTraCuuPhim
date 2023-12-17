@@ -18,6 +18,11 @@ public class Tv extends Film{
     private List<Company> production_companies;
     private int number_of_seasons;
     private List<Season> seasons;
+
+    public Tv(int id, String name, String poster_path, String media_type) {
+        super(id, name, poster_path, media_type);
+    }
+
     public int getNumber_of_episodes() {
         return number_of_episodes;
     }
