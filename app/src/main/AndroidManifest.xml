@@ -16,6 +16,9 @@
         android:theme="@style/Theme.AppTraCuuPhim"
         tools:targetApi="31">
         <activity
+            android:name=".activity.NetworkActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.CreditActivity"
             android:exported="false" />
         <activity
@@ -41,9 +44,6 @@
             android:exported="false" />
         <activity
             android:name=".activity.CompanyActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.NetworkActivity"
             android:exported="false" />
         <activity
             android:name=".activity.CastActivity"

@@ -25,7 +25,6 @@
             android:text="1955-01-15"
             android:textSize="13dp"
             android:textColor="#808080"/>
-
     </LinearLayout>
     <LinearLayout
         android:id="@+id/action"

@@ -388,6 +388,7 @@ public class FilmDetailActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onClick(Video video) {
                                                     Intent intent = new Intent(FilmDetailActivity.this, VideoActivity.class);
+                                                    intent.putExtra("id",video.getKey());
                                                     startActivity(intent);
                                                 }
                                             }
