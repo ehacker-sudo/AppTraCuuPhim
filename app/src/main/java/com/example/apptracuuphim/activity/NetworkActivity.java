@@ -95,7 +95,7 @@ public class NetworkActivity extends AppCompatActivity implements Callback<Netwo
 
         // Phim truyền hình nổi bật
 
-        FilmApi.film.getDiscover("tv","en-US", 1,false,"popularity.desc","",100000,0,0,0,"",network.id)
+        FilmApi.film.getDiscover("tv","en-US", 1,false,"popularity.desc","",100000,0,0,0,"",String.valueOf(network.id))
                 .enqueue(new Callback<FilmResource<Film>>() {
                     @Override
                     public void onResponse(Call<FilmResource<Film>> call, Response<FilmResource<Film>> response) {
