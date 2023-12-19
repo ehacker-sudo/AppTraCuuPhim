@@ -233,29 +233,9 @@ public class FilmDetailActivity extends AppCompatActivity {
                                             new NetworkListener() {
                                                 @Override
                                                 public void onClick(Network network) {
-                                                    try {
-                                                        NetworkApi.network.getNetworkDetail(network.getId())
-                                                                .enqueue(new Callback<Network>() {
-                                                                    @Override
-                                                                    public void onResponse(Call<Network> call, Response<Network> response) {
-                                                                        Network network1 = response.body();
-                                                                        if (!network1.getHomepage().equals("") && network1.getHomepage() != null) {
-                                                                            Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(network1.getHomepage()));
-                                                                            startActivity(myIntent);
-                                                                        }
-                                                                    }
-
-                                                                    @Override
-                                                                    public void onFailure(Call<Network> call, Throwable t) {
-                                                                        Toast.makeText(getApplicationContext(), "Api Error",  Toast.LENGTH_LONG).show();
-                                                                        t.printStackTrace();
-                                                                    }
-                                                                });
-                                                    } catch (ActivityNotFoundException e) {
-                                                        Toast.makeText(getApplicationContext(), "No application can handle this request."
-                                                                + " Please install a webbrowser",  Toast.LENGTH_LONG).show();
-                                                        e.printStackTrace();
-                                                    }
+                                                    Intent intent = new Intent(FilmDetailActivity.this, NetworkActivity.class);
+                                                    intent.putExtra("id",network.getId());
+                                                    startActivity(intent);
                                                 }
                                             })
                             );

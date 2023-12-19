@@ -10,7 +10,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+        layout="@layout/mini_toolbar"/>
 
     <include
         android:id="@+id/content_network"

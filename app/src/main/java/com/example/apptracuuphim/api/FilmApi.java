@@ -133,7 +133,8 @@ public interface FilmApi {
             @Query("with_runtime.gte") int with_runtime_gte,
             @Query("vote_average.gte") int vote_average_gte,
             @Query("vote_count.gte") int vote_count_gte,
-            @Query("with_keywords") String with_keywords
+            @Query("with_keywords") String with_keywords,
+            @Query("with_networks") int with_networks
 
     );
 

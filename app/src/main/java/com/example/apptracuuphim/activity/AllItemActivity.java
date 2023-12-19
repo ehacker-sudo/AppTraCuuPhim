@@ -56,7 +56,7 @@ public class AllItemActivity extends AppCompatActivity implements Callback<FilmR
         binding.toolbar.toolbarTitle.setText("Tìm kiếm phim");
 
         if (!media_type.isEmpty()) {
-            FilmApi.film.getDiscover(media_type,"en-US", 1,false,"popularity.desc",with_genres,with_runtime_lte,with_runtime_gte,vote_average_gte,vote_count_gte,with_keywords).enqueue(this);
+            FilmApi.film.getDiscover(media_type,"en-US", 1,false,"popularity.desc",with_genres,with_runtime_lte,with_runtime_gte,vote_average_gte,vote_count_gte,with_keywords,0).enqueue(this);
         }
 
 
