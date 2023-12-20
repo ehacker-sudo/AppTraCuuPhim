@@ -7,7 +7,8 @@
     android:layout_marginStart="10dp"
     android:layout_marginBottom="25dp"
     android:id="@+id/card_movie"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/body_color">
         <ImageView
             android:id="@+id/cast_image"
             android:layout_width="match_parent"
@@ -22,7 +23,7 @@
             android:textAlignment="center"
             android:text="Mayumi Tanaka"
             android:textSize="14dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/white"/>
         <TextView
             android:id="@+id/tv_cast_role"
             android:layout_width="match_parent"

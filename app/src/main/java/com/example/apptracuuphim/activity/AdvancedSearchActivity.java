@@ -146,7 +146,7 @@ public class AdvancedSearchActivity extends AppCompatActivity implements Callbac
                         for (int i = 0; i < stringList.size(); i++) {
                             if (stringList.get(i).getName().equals("Ít hơn 30 phút")) {
 //                                if (itemWithRuntimeLte < 30 || itemWithRuntimeLte > 180) {
-                                    itemWithRuntimeLte = 30;
+                                itemWithRuntimeLte = 30;
 //                                }
                                 itemWithRuntimeGte = 0;
                             }

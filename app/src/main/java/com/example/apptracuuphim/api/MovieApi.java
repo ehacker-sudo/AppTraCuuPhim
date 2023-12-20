@@ -32,35 +32,11 @@ public interface MovieApi {
             "Accept: application/json",
             "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
     })
-    @GET("3/movie/popular")
-    Call<FilmResource<Film>> getPopularMovie(
-            @Query("language") String language,
-            @Query("page") int page
-    );
-
-    @Headers({
-            "Accept: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
-    })
     @GET("3/movie/upcoming")
     Call<FilmResource<Film>> getUpcomingMovies(
             @Query("language") String language,
             @Query("page") int page
     );
-
-
-    @Headers({
-            "Accept: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
-    })
-    @GET("3/movie/top_rated")
-    Call<FilmResource<Film>> getTopRatedMovies(
-            @Query("language") String language,
-            @Query("page") int page,
-            @Query("region") String region
-
-    );
-
 
     @Headers({
             "Accept: application/json",
@@ -82,47 +58,6 @@ public interface MovieApi {
     Call<Movie> getMovieDetails(
             @Path("movie_id") int movie_id,
             @Query("language") String language
-    );
-
-
-    @Headers({
-            "Accept: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
-    })
-    @GET("3/movie/{movie_id}/images")
-    Call<ImageType> getMovieImages(
-            @Path("movie_id") int movie_id,
-            @Query("language") String language
-    );
-
-    @Headers({
-            "Accept: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
-    })
-    @GET("3/movie/{movie_id}/recommendations")
-    Call<FilmResource<Film>> getMovieRecommendations(
-            @Path("movie_id") int movie_id,
-            @Query("language") String language,
-            @Query("page") int page
-    );
-
-    @Headers({
-            "Accept: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
-    })
-    @GET("3/movie/{movie_id}/credits")
-    Call<CreditsResource> getMovieCredits(
-            @Path("movie_id") int movie_id,
-            @Query("language") String language
-    );
-
-    @Headers({
-            "Accept: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
-    })
-    @GET("3/movie/{movie_id}/external_ids")
-    Call<SocialMedia> getMovieExternalIDs(
-            @Path("movie_id") int movie_id
     );
     @Headers({
             "Accept: application/json",

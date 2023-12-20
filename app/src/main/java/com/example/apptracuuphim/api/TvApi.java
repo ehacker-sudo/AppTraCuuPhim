@@ -30,17 +30,6 @@ public interface TvApi {
             .build()
             .create(TvApi.class);
 
-
-    @Headers({
-            "Accept: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
-    })
-    @GET("3/tv/popular")
-    Call<FilmResource<Film>> getPopularTvSeries(
-            @Query("language") String language,
-            @Query("page") int page
-    );
-
     @Headers({
             "Accept: application/json",
             "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
@@ -65,16 +54,6 @@ public interface TvApi {
             "Accept: application/json",
             "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
     })
-    @GET("3/tv/top_rated")
-    Call<FilmResource<Film>> getTopRatedTvSeries(
-            @Query("language") String language,
-            @Query("page") int page
-    );
-
-    @Headers({
-            "Accept: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
-    })
     @GET("3/tv/{series_id}")
     Call<Tv> getTvSerieDetails(
             @Path("series_id") int series_id,
@@ -85,39 +64,8 @@ public interface TvApi {
             "Accept: application/json",
             "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
     })
-    @GET("3/tv/{series_id}/images")
-    Call<ImageType> getTVSeriesImages(
-            @Path("series_id") int series_id,
-            @Query("language") String language
-    );
-
-    @Headers({
-            "Accept: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
-    })
     @GET("3/tv/{series_id}/videos")
     Call<FilmResource<Video>> getVideoTv(
-            @Path("series_id") int series_id,
-            @Query("language") String language
-    );
-
-    @Headers({
-            "Accept: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
-    })
-    @GET("3/tv/{series_id}/recommendations")
-    Call<FilmResource<Film>> getTvSerieRecommendations(
-            @Path("series_id") int series_id,
-            @Query("language") String language,
-            @Query("page") int page
-    );
-
-    @Headers({
-            "Accept: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YmIwZjIwOTE1N2YwYmI0Nzg4ZWNiNTRiZTYzNWQxNCIsInN1YiI6IjY0MmE0OTkzMGYzNjU1MDBmMWMyOWZiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.inC5WmHQXvHthA0THRYobk29Tea9Q5lpVyY2rfKCBd8"
-    })
-    @GET("3/tv/{series_id}/credits")
-    Call<CreditsResource> getTvSerieCredits(
             @Path("series_id") int series_id,
             @Query("language") String language
     );

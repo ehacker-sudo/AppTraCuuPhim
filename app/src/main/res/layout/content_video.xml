@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80171E31">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/ytb_player"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:autoPlay="false" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/body_color">
+            <TextView
+                android:id="@+id/video_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:paddingHorizontal="15dp"
+                android:layout_marginTop="10sp"/>
+            <TextView
+                android:id="@+id/vidoe_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Traler"
+                android:textColor="@color/app_color"
+                android:paddingHorizontal="15dp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp">
+                <ImageView
+                    android:id="@+id/img_tv"
+                    android:layout_width="80dp"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/user"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_toEndOf="@id/img_tv"
+                    android:layout_centerVertical="true"
+                    android:textAlignment="center">
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="One Piece"
+                        android:textSize="20dp"
+                        android:textColor="@color/white"
+                        android:layout_marginStart="10dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginStart="1dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tv Series"
+                            android:textSize="16dp"
+                            android:textColor="#808080"
+                            android:layout_marginStart="10dp" />
+                        <TextView
+                            android:id="@+id/tv_ep"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2018"
+                            android:textSize="16dp"
+                            android:textColor="#808080"
+                            android:layout_marginStart="10dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginBottom="15dp">
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:src="@drawable/star_movie"
+                                android:layout_gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/tv_movie_rate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="1dp"
+                                android:text="7.2"
+                                android:textColor="#808080"
+                                android:layout_gravity="center"
+                                android:textSize="16dp" />
+                        </LinearLayout>
+                        <TextView
+                            android:id="@+id/tv_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2018"
+                            android:textSize="16dp"
+                            android:textColor="#808080"
+                            android:layout_marginStart="10dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+        <include
+            android:id="@+id/film_playlist"
+            layout="@layout/film_list_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

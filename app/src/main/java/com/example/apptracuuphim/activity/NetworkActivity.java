@@ -1,7 +1,6 @@
 package com.example.apptracuuphim.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,16 +12,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.apptracuuphim.R;
 import com.example.apptracuuphim.adapter.ExtraDetailAdapter;
 import com.example.apptracuuphim.adapter.ItemAdapter;
 import com.example.apptracuuphim.api.FilmApi;
 import com.example.apptracuuphim.api.NetworkApi;
-import com.example.apptracuuphim.api.TvApi;
-import com.example.apptracuuphim.databinding.ActivityCreditBinding;
 import com.example.apptracuuphim.databinding.ActivityNetworkBinding;
 import com.example.apptracuuphim.listener.FilmClickListener;
-import com.example.apptracuuphim.listener.MiniItemListener;
 import com.example.apptracuuphim.model.Film.ExtraInfo;
 import com.example.apptracuuphim.model.Film.Film;
 import com.example.apptracuuphim.model.Network.Network;

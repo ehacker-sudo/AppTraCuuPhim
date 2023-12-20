@@ -53,6 +53,7 @@ public class AllItemActivity extends AppCompatActivity implements Callback<FilmR
         vote_count_gte = getIntent().getIntExtra("vote_count_gte",0);
         with_keywords = getIntent().getStringExtra("with_keywords");
 
+        Toast.makeText(this, with_runtime_gte + " - " + with_runtime_lte, Toast.LENGTH_SHORT).show();
         binding.toolbar.toolbarTitle.setText("Tìm kiếm phim");
 
         if (!media_type.isEmpty()) {
@@ -95,6 +96,5 @@ public class AllItemActivity extends AppCompatActivity implements Callback<FilmR
 
     @Override
     public void onFailure(Call<FilmResource<Film>> call, Throwable t) {
-
     }
 }

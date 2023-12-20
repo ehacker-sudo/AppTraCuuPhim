@@ -28,6 +28,7 @@ import com.example.apptracuuphim.adapter.ExtraDetailAdapter;
 import com.example.apptracuuphim.adapter.GenresAdapter;
 import com.example.apptracuuphim.adapter.ItemAdapter;
 import com.example.apptracuuphim.adapter.NetworkAdapter;
+import com.example.apptracuuphim.adapter.PlayListAdapter;
 import com.example.apptracuuphim.adapter.SocialMediaAdapter;
 import com.example.apptracuuphim.adapter.VideoAdapter;
 import com.example.apptracuuphim.api.CompanyApi;
@@ -305,7 +306,7 @@ public class FilmDetailActivity extends AppCompatActivity {
                         }
                     });
 
-            TvApi.tv.getTVSeriesImages(getIntent().getIntExtra("id",37854),"")
+            FilmApi.film.getFilmImages("tv",getIntent().getIntExtra("id",37854),"")
                     .enqueue(new Callback<ImageType>() {
                         @Override
                         public void onResponse(Call<ImageType> call, Response<ImageType> response) {
@@ -369,6 +370,9 @@ public class FilmDetailActivity extends AppCompatActivity {
                                                 public void onClick(Video video) {
                                                     Intent intent = new Intent(FilmDetailActivity.this, VideoActivity.class);
                                                     intent.putExtra("id",video.getKey());
+                                                    intent.putExtra("series_id",getIntent().getIntExtra("id",37854));
+                                                    intent.putExtra("name",video.getName());
+                                                    intent.putExtra("type",video.getType());
                                                     startActivity(intent);
                                                 }
                                             }
@@ -382,7 +386,7 @@ public class FilmDetailActivity extends AppCompatActivity {
                         }
                     });
 
-            TvApi.tv.getTvSerieRecommendations(getIntent().getIntExtra("id",37854),"en",1)
+            FilmApi.film.getFilmRecommendations("tv",getIntent().getIntExtra("id",37854),"en",1)
                     .enqueue(new Callback<FilmResource<Film>>() {
                         @Override
                         public void onResponse(Call<FilmResource<Film>> call, Response<FilmResource<Film>> response) {
@@ -416,7 +420,7 @@ public class FilmDetailActivity extends AppCompatActivity {
                         }
                     });
 
-            TvApi.tv.getTvSerieCredits(getIntent().getIntExtra("id",37854),"en")
+            FilmApi.film.getCredits("tv",getIntent().getIntExtra("id",37854),"en")
                     .enqueue(new Callback<CreditsResource>() {
                         @Override
                         public void onResponse(Call<CreditsResource> call, Response<CreditsResource> response) {
@@ -683,7 +687,7 @@ public class FilmDetailActivity extends AppCompatActivity {
                         }
                     });
 
-            MovieApi.movie.getMovieImages(getIntent().getIntExtra("id",37854),"")
+            FilmApi.film.getFilmImages("movie",getIntent().getIntExtra("id",37854),"")
                     .enqueue(new Callback<ImageType>() {
                         @Override
                         public void onResponse(Call<ImageType> call, Response<ImageType> response) {
@@ -728,7 +732,7 @@ public class FilmDetailActivity extends AppCompatActivity {
                         }
                     });
 
-            MovieApi.movie.getMovieRecommendations(getIntent().getIntExtra("id",37854),"en",1)
+            FilmApi.film.getFilmRecommendations("movie",getIntent().getIntExtra("id",37854),"en",1)
                     .enqueue(new Callback<FilmResource<Film>>() {
                         @Override
                         public void onResponse(Call<FilmResource<Film>> call, Response<FilmResource<Film>> response) {
@@ -762,7 +766,7 @@ public class FilmDetailActivity extends AppCompatActivity {
                         }
                     });
 
-            MovieApi.movie.getMovieCredits(getIntent().getIntExtra("id",37854),"en")
+            FilmApi.film.getCredits("movie",getIntent().getIntExtra("id",37854),"en")
                     .enqueue(new Callback<CreditsResource>() {
                         @Override
                         public void onResponse(Call<CreditsResource> call, Response<CreditsResource> response) {
@@ -794,7 +798,7 @@ public class FilmDetailActivity extends AppCompatActivity {
                         }
                     });
 
-            MovieApi.movie.getMovieExternalIDs(getIntent().getIntExtra("id",37854))
+            FilmApi.film.getExternalIDs("movie",getIntent().getIntExtra("id",37854))
                             .enqueue(new Callback<SocialMedia>() {
                                 @Override
                                 public void onResponse(Call<SocialMedia> call, Response<SocialMedia> response) {

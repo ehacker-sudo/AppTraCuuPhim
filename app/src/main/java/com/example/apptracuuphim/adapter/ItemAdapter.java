@@ -89,11 +89,16 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             if (film.getMedia_type().equals("movie")) {
 
                 bannerViewHolder.TvFilmTitle.setText(film.getTitle());
-                if (film.getRelease_date().length() < 4) {
-                    bannerViewHolder.TvFilmDate.setText("Null");
+                if (film.getRelease_date() != null) {
+                    if (film.getRelease_date().length() < 4) {
+                        bannerViewHolder.TvFilmDate.setText("Null");
+                    }
+                    else {
+                        bannerViewHolder.TvFilmDate.setText(film.getRelease_date().substring(0,4));
+                    }
                 }
                 else {
-                    bannerViewHolder.TvFilmDate.setText(film.getRelease_date().substring(0,4));
+                    bannerViewHolder.TvFilmDate.setText("Null");
                 }
                 MovieApi.movie.getMovieReleaseDate(207703).enqueue(new Callback<FilmResource<MovieCertification>>() {
                     @Override
@@ -117,11 +122,15 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 bannerViewHolder.TvFilmType.setText("Movie");
             } else if (film.getMedia_type().equals("tv")) {
                 bannerViewHolder.TvFilmTitle.setText(film.getName());
-                if (film.getFirst_air_date().length() < 4) {
-                    bannerViewHolder.TvFilmDate.setText("Null");
+                if (film.getFirst_air_date() != null) {
+                    if (film.getFirst_air_date().length() < 4) {
+                        bannerViewHolder.TvFilmDate.setText("Null");
+                    } else {
+                        bannerViewHolder.TvFilmDate.setText(film.getFirst_air_date().substring(0, 4));
+                    }
                 }
                 else {
-                    bannerViewHolder.TvFilmDate.setText(film.getFirst_air_date().substring(0,4));
+                    bannerViewHolder.TvFilmDate.setText("Null");
                 }
                 bannerViewHolder.IvFilmType.setImageResource(R.drawable.banner_tv);
                 bannerViewHolder.TvFilmType.setText("Tv Serie");
@@ -165,7 +174,9 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 posterViewHolder.TvFilmTitle.setText(film.getName());
             }
             posterViewHolder.TvFilmRate.setText(String.valueOf(film.getVote_average()));
-            Glide.with(context).load("https://image.tmdb.org/t/p/original" + film.getPoster_path()).into(posterViewHolder.IvFilmImage);
+            if (film.getPoster_path() != null) {
+                Glide.with(context).load("https://image.tmdb.org/t/p/original" + film.getPoster_path()).into(posterViewHolder.IvFilmImage);
+            }
             posterViewHolder.ItemFilm.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -179,11 +190,16 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
             if (film.getMedia_type().equals("movie")) {
                 backDropViewHolder.TvFilmTitle.setText(film.getTitle());
-                if (film.getRelease_date().length() < 4) {
-                    backDropViewHolder.TvFilmDate.setText("Null");
+                if (film.getRelease_date() != null) {
+                    if (film.getRelease_date().length() < 4) {
+                        backDropViewHolder.TvFilmDate.setText("Null");
+                    }
+                    else {
+                        backDropViewHolder.TvFilmDate.setText(film.getRelease_date().substring(0,4));
+                    }
                 }
                 else {
-                    backDropViewHolder.TvFilmDate.setText(film.getRelease_date().substring(0,4));
+                    backDropViewHolder.TvFilmDate.setText("Null");
                 }
                 MovieApi.movie.getMovieReleaseDate(207703).enqueue(new Callback<FilmResource<MovieCertification>>() {
                     @Override
@@ -206,11 +222,16 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 backDropViewHolder.TvFilmType.setText("Movie");
             } else if (film.getMedia_type().equals("tv")) {
                 backDropViewHolder.TvFilmTitle.setText(film.getName());
-                if (film.getFirst_air_date().length() < 4) {
-                    backDropViewHolder.TvFilmDate.setText("Null");
+                if (film.getFirst_air_date() != null) {
+                    if (film.getFirst_air_date().length() < 4) {
+                        backDropViewHolder.TvFilmDate.setText("Null");
+                    }
+                    else {
+                        backDropViewHolder.TvFilmDate.setText(film.getFirst_air_date().substring(0,4));
+                    }
                 }
                 else {
-                    backDropViewHolder.TvFilmDate.setText(film.getFirst_air_date().substring(0,4));
+                    backDropViewHolder.TvFilmDate.setText("Null");
                 }
                 TvApi.tv.getTvContentRatings(37854).enqueue(new Callback<FilmResource<TvCertification>>() {
                     @Override
@@ -232,7 +253,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 backDropViewHolder.IvFilmType.setImageResource(R.drawable.banner_tv);
                 backDropViewHolder.TvFilmType.setText("Tv Serie");
             }
-            if (film.getPoster_path() != null) {
+            if (film.getBackdrop_path() != null) {
                 Glide.with(context).load("https://image.tmdb.org/t/p/original" + film.getBackdrop_path()).into(backDropViewHolder.IvFilmImage);
             }
             backDropViewHolder.ItemFilm.setOnClickListener(new View.OnClickListener() {

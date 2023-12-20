@@ -51,7 +51,7 @@ public class TvFragment extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        TvApi.tv.getTopRatedTvSeries("en",1)
+        FilmApi.film.getTopRatedFilm("tv","en",1)
                 .enqueue(new Callback<FilmResource<Film>>() {
                     @Override
                     public void onResponse(Call<FilmResource<Film>> call, Response<FilmResource<Film>> response) {

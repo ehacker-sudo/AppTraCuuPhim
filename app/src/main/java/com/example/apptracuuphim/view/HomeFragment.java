@@ -91,7 +91,7 @@ public class HomeFragment extends Fragment {
         });
 
 
-        MovieApi.movie.getPopularMovie("en",1).enqueue(new Callback<FilmResource<Film>>() {
+        FilmApi.film.getPopularFilm("movie","en",1).enqueue(new Callback<FilmResource<Film>>() {
             @Override
             public void onResponse(Call<FilmResource<Film>> call, Response<FilmResource<Film>> response) {
                 FilmResource<Film> filmResource = response.body();
@@ -128,7 +128,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        TvApi.tv.getPopularTvSeries("en",1).enqueue(new Callback<FilmResource<Film>>() {
+        FilmApi.film.getPopularFilm("tv","en",1).enqueue(new Callback<FilmResource<Film>>() {
             @Override
             public void onResponse(Call<FilmResource<Film>> call, Response<FilmResource<Film>> response) {
                 FilmResource<Film> filmResource = response.body();

@@ -1,69 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="5dp"
-    android:background="@color/body_color">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp"
+    android:layout_marginTop="1dp"
+    android:orientation="vertical"
+    android:id="@+id/item_credit"
+    android:layout_marginVertical="5dp"
+    android:layout_marginLeft="5dp">
     <RelativeLayout
-        android:id="@+id/relativelayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp">
         <ImageView
-            android:id="@+id/video_image_view"
-            android:layout_width="170dp"
-            android:layout_height="100dp"
+            android:id="@+id/img_credit"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/img" />
+            android:src="@drawable/user"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_alignBottom="@id/video_image_view">
-            <ImageView
-                android:layout_width="20sp"
-                android:layout_height="20sp"
-                android:layout_marginLeft="7dp"
-                android:layout_marginVertical="7dp"
-                android:layout_gravity="center"
-                android:src="@drawable/play_outline"/>
-
+            android:orientation="vertical"
+            android:layout_toEndOf="@id/img_credit"
+            android:layout_centerVertical="true"
+            android:textAlignment="center">
             <TextView
-                android:id="@+id/video_type"
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="3dp"
-                android:gravity="center"
-                android:text="Trailer"
-                android:textColor="#ffffff"
-                android:textSize="15dp" />
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:layout_marginStart="10dp" />
+            <TextView
+                android:id="@+id/tv_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2018"
+                android:textSize="16dp"
+                android:textColor="#808080"
+                android:layout_marginStart="10dp" />
+
         </LinearLayout>
-
     </RelativeLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_toEndOf="@id/relativelayout"
-        android:layout_centerVertical="true"
-        android:textAlignment="center">
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:layout_marginStart="10dp" />
-        <TextView
-            android:id="@+id/tv_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2018"
-            android:textSize="16dp"
-            android:textColor="#808080"
-            android:layout_marginStart="10dp" />
-
-    </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

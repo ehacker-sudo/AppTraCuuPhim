@@ -53,7 +53,7 @@ public class MovieFragment extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        MovieApi.movie.getTopRatedMovies("en",1,"")
+        FilmApi.film.getTopRatedFilm("movie","en",1)
                 .enqueue(new Callback<FilmResource<Film>>() {
                     @Override
                     public void onResponse(Call<FilmResource<Film>> call, Response<FilmResource<Film>> response) {
