@@ -8,4 +8,5 @@ import java.util.List;
 public interface SecondCollectListener {
     public void OnClickListener(SearchCategoryAdapter.ViewHolder viewHolder);
     public void OnCheckBoxListener(String title,List<Genres> stringList);
+    public void OnRadioListener(String title,Genres genres);
 }

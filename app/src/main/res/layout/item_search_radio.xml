@@ -10,4 +10,5 @@
     android:layoutDirection="rtl"
     android:layout_marginHorizontal="20dp"
     android:button="@drawable/custom_checkbox"
-    android:textAlignment="textStart"/>
+    android:textAlignment="textStart"
+    android:background="@color/header_color"/>

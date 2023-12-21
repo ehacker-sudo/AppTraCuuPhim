@@ -13,6 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptracuuphim.R;
+import com.example.apptracuuphim.adapter.search.ItemSearchAdapter;
+import com.example.apptracuuphim.adapter.search.MediaSearchAdapter;
+import com.example.apptracuuphim.adapter.search.RunTimeSearchAdapter;
+import com.example.apptracuuphim.adapter.search.VoteCountSearchAdapter;
+import com.example.apptracuuphim.adapter.search.VotePointSearchAdapter;
 import com.example.apptracuuphim.listener.SecondCollectListener;
 import com.example.apptracuuphim.model.Search.Item;
 
@@ -22,10 +27,12 @@ public class SearchCategoryAdapter extends RecyclerView.Adapter<SearchCategoryAd
         private Context context;
         private List<Item> collection;
         private SecondCollectListener collectListener;
+        private String type;
         private boolean isVisible;
 
-    public SearchCategoryAdapter(Context context, List<Item> collection, SecondCollectListener collectListener) {
+    public SearchCategoryAdapter(Context context,String type, List<Item> collection, SecondCollectListener collectListener) {
         this.context = context;
+        this.type = type;
         this.collection = collection;
         this.collectListener = collectListener;
     }
@@ -59,10 +66,27 @@ public class SearchCategoryAdapter extends RecyclerView.Adapter<SearchCategoryAd
             holder.recycleViewItem.setLayoutManager(
                     new LinearLayoutManager(context)
             );
-            holder.recycleViewItem.setAdapter(
-                    new ItemSearchAdapter(context,item.getGenresList(),item.getNameGroup(),collectListener)
-            );
-
+            if (item.getNameGroup().equals("Kiểu phim")) {
+                holder.recycleViewItem.setAdapter(
+                        new MediaSearchAdapter(context,type,item.getGenresList(),item.getNameGroup(),collectListener)
+                );
+            } else if (item.getNameGroup().equals("Thời lượng")) {
+                holder.recycleViewItem.setAdapter(
+                        new RunTimeSearchAdapter(context,type,item.getGenresList(),item.getNameGroup(),collectListener)
+                );
+            } else if (item.getNameGroup().equals("Điểm số")) {
+                holder.recycleViewItem.setAdapter(
+                        new VotePointSearchAdapter(context,type,item.getGenresList(),item.getNameGroup(),collectListener)
+                );
+            } else if (item.getNameGroup().equals("Lượng đánh giá")) {
+                holder.recycleViewItem.setAdapter(
+                        new VoteCountSearchAdapter(context,type,item.getGenresList(),item.getNameGroup(),collectListener)
+                );
+            } else if (item.getNameGroup().equals("Thể loại")) {
+                holder.recycleViewItem.setAdapter(
+                        new ItemSearchAdapter(context,type,item.getGenresList(),item.getNameGroup(),collectListener)
+                );
+            }
 
         }
 

@@ -62,6 +62,7 @@ public class AdvancedSearchActivity extends AppCompatActivity implements Callbac
         binding.advancedSearch.recycleView.setAdapter(
             new SearchCategoryAdapter(
                 this,
+                "radio",
                 itemListMediaType,
                 new SecondCollectListener() {
                     private boolean isVisible = false;
@@ -82,24 +83,17 @@ public class AdvancedSearchActivity extends AppCompatActivity implements Callbac
 
                     @Override
                     public void OnCheckBoxListener(String title, List<Genres> stringList) {
-                        Item firstItemGenres = new Item(title,stringList);
-                        if (stringList.size() == 0 || stringList.size() == 2) {
-                            List<Item> itemList = new ArrayList<>();
 
-                            binding.advancedSearch.recycleViewGenres.setLayoutManager(
-                                    new LinearLayoutManager(AdvancedSearchActivity.this)
-                            );
-                            binding.advancedSearch.recycleViewGenres.setAdapter(
-                                    new SearchCategoryAdapter(AdvancedSearchActivity.this, itemList,null)
-                            );
+                    }
+
+                    @Override
+                    public void OnRadioListener(String title, Genres genres) {
+                        if (genres.getName().equals("Phim truyền hình")) {
+                            itemMediaType = "tv";
+                            FilmApi.film.getGenresList("tv","vi-Vn").enqueue(AdvancedSearchActivity.this);
                         } else {
-                            if (stringList.get(0).getName().equals("Phim truyền hình")) {
-                                itemMediaType = "tv";
-                                FilmApi.film.getGenresList("tv","vi-Vn").enqueue(AdvancedSearchActivity.this);
-                            } else {
-                                itemMediaType = "movie";
-                                FilmApi.film.getGenresList("movie","vi-Vn").enqueue(AdvancedSearchActivity.this);
-                            }
+                            itemMediaType = "movie";
+                            FilmApi.film.getGenresList("movie","vi-Vn").enqueue(AdvancedSearchActivity.this);
                         }
                     }
                 })
@@ -123,6 +117,7 @@ public class AdvancedSearchActivity extends AppCompatActivity implements Callbac
         binding.advancedSearch.recycleViewWithRuntime.setAdapter(
             new SearchCategoryAdapter(
                 this,
+                "radio",
                 itemListWithRunTime,
                 new SecondCollectListener() {
                     private boolean isVisible = false;
@@ -143,32 +138,34 @@ public class AdvancedSearchActivity extends AppCompatActivity implements Callbac
 
                     @Override
                     public void OnCheckBoxListener(String title, List<Genres> stringList) {
-                        for (int i = 0; i < stringList.size(); i++) {
-                            if (stringList.get(i).getName().equals("Ít hơn 30 phút")) {
-//                                if (itemWithRuntimeLte < 30 || itemWithRuntimeLte > 180) {
+                    }
+
+                    @Override
+                    public void OnRadioListener(String title, Genres genres) {
+                            if (genres.getName().equals("Ít hơn 30 phút")) {
                                 itemWithRuntimeLte = 30;
-//                                }
                                 itemWithRuntimeGte = 0;
                             }
-                            if (stringList.get(i).getName().equals("Ít hơn một tiếng")) {
-//                                if (itemWithRuntimeLte < 60 || itemWithRuntimeLte > 180) {
-                                    itemWithRuntimeLte = 60;
-//                                }
+                            else if (genres.getName().equals("Ít hơn một tiếng")) {
+                                itemWithRuntimeLte = 60;
                                 itemWithRuntimeGte = 0;
                             }
-                            if (stringList.get(i).getName().equals("Từ một tiếng đến hai tiếng")) {
+                            else if (genres.getName().equals("Từ một tiếng đến hai tiếng")) {
                                 itemWithRuntimeLte = 120;
                                 itemWithRuntimeGte = 60;
                             }
-                            if (stringList.get(i).getName().equals("Từ hai tiếng đến ba tiếng")) {
+                            else if (genres.getName().equals("Từ hai tiếng đến ba tiếng")) {
                                 itemWithRuntimeLte = 180;
                                 itemWithRuntimeGte = 120;
                             }
-                            if (stringList.get(i).getName().equals("Lớn hơn ba tiếng")) {
+                            else if (genres.getName().equals("Lớn hơn ba tiếng")) {
                                 itemWithRuntimeLte = 1000000;
                                 itemWithRuntimeGte = 180;
                             }
-                        }
+                            else {
+                                itemWithRuntimeLte = 1000000;
+                                itemWithRuntimeGte = 0;
+                            }
                     }
                 })
         );
@@ -188,6 +185,7 @@ public class AdvancedSearchActivity extends AppCompatActivity implements Callbac
         binding.advancedSearch.recycleViewVoteAverage.setAdapter(
                 new SearchCategoryAdapter(
                         this,
+                        "radio",
                         itemListVoteAverage,
                         new SecondCollectListener() {
                             private boolean isVisible = false;
@@ -208,19 +206,24 @@ public class AdvancedSearchActivity extends AppCompatActivity implements Callbac
 
                             @Override
                             public void OnCheckBoxListener(String title, List<Genres> stringList) {
-                                for (int i = 0; i < stringList.size(); i++) {
-                                    if (stringList.get(i).getName().equals("6+ điểm")) {
-                                        itemVoteAverageGte = 6;
-                                    }
-                                    if (stringList.get(i).getName().equals("7+ điểm")) {
-                                        itemVoteAverageGte = 7;
-                                    }
-                                    if (stringList.get(i).getName().equals("8+ điểm")) {
-                                        itemVoteAverageGte = 8;
-                                    }
-                                    if (stringList.get(i).getName().equals("9+ điểm")) {
-                                        itemVoteAverageGte = 9;
-                                    }
+                            }
+
+                            @Override
+                            public void OnRadioListener(String title, Genres genres) {
+                                if (genres.getName().equals("6+ điểm")) {
+                                    itemVoteAverageGte = 6;
+                                }
+                                else if (genres.getName().equals("7+ điểm")) {
+                                    itemVoteAverageGte = 7;
+                                }
+                                else if (genres.getName().equals("8+ điểm")) {
+                                    itemVoteAverageGte = 8;
+                                }
+                                else if (genres.getName().equals("9+ điểm")) {
+                                    itemVoteAverageGte = 9;
+                                }
+                                else {
+                                    itemVoteAverageGte = 0;
                                 }
                             }
                         })
@@ -244,6 +247,7 @@ public class AdvancedSearchActivity extends AppCompatActivity implements Callbac
         binding.advancedSearch.recycleViewVoteCount.setAdapter(
                 new SearchCategoryAdapter(
                         this,
+                        "radio",
                         itemListVoteCount,
                         new SecondCollectListener() {
                             private boolean isVisible = false;
@@ -264,29 +268,36 @@ public class AdvancedSearchActivity extends AppCompatActivity implements Callbac
 
                             @Override
                             public void OnCheckBoxListener(String title, List<Genres> stringList) {
-                                for (int i = 0; i < stringList.size(); i++) {
-                                    if (stringList.get(i).getName().equals("100+ đánh giá")) {
-                                        itemVoteCountGte = 100;
-                                    }
-                                    if (stringList.get(i).getName().equals("500+ đánh giá")) {
-                                        itemVoteCountGte = 500;
-                                    }
-                                    if (stringList.get(i).getName().equals("1000+ đánh giá")) {
-                                        itemVoteCountGte = 1000;
-                                    }
-                                    if (stringList.get(i).getName().equals("5000+ đánh giá")) {
-                                        itemVoteCountGte = 5000;
-                                    }
-                                    if (stringList.get(i).getName().equals("10000+ đánh giá")) {
-                                        itemVoteCountGte = 10000;
-                                    }
-                                    if (stringList.get(i).getName().equals("15000+ đánh giá")) {
-                                        itemVoteCountGte = 15000;
-                                    }
-                                    if (stringList.get(i).getName().equals("20000+ đánh giá")) {
-                                        itemVoteCountGte = 20000;
-                                    }
 
+
+                            }
+
+                            @Override
+                            public void OnRadioListener(String title, Genres genres) {
+
+                                if (genres.getName().equals("100+ đánh giá")) {
+                                    itemVoteCountGte = 100;
+                                }
+                                else if (genres.getName().equals("500+ đánh giá")) {
+                                    itemVoteCountGte = 500;
+                                }
+                                else if (genres.getName().equals("1000+ đánh giá")) {
+                                    itemVoteCountGte = 1000;
+                                }
+                                else if (genres.getName().equals("5000+ đánh giá")) {
+                                    itemVoteCountGte = 5000;
+                                }
+                                else if (genres.getName().equals("10000+ đánh giá")) {
+                                    itemVoteCountGte = 10000;
+                                }
+                                else if (genres.getName().equals("15000+ đánh giá")) {
+                                    itemVoteCountGte = 15000;
+                                }
+                                else if (genres.getName().equals("20000+ đánh giá")) {
+                                    itemVoteCountGte = 20000;
+                                }
+                                else {
+                                    itemVoteCountGte = 0;
                                 }
                             }
                         })
@@ -323,6 +334,7 @@ public class AdvancedSearchActivity extends AppCompatActivity implements Callbac
         binding.advancedSearch.recycleViewGenres.setAdapter(
             new SearchCategoryAdapter(
                 AdvancedSearchActivity.this,
+                "checkbox",
                 itemList,
                 new SecondCollectListener() {
                     public String with_genres = "";
@@ -354,6 +366,11 @@ public class AdvancedSearchActivity extends AppCompatActivity implements Callbac
                             with_genres = with_genres + stringList.get(stringList.size() - 1).getId();
                         }
                         itemGenres = with_genres;
+                    }
+
+                    @Override
+                    public void OnRadioListener(String title, Genres genres) {
+
                     }
                 })
         );

@@ -922,8 +922,4 @@ public class FilmDetailActivity extends AppCompatActivity {
 
     }
 
-    public void asas(String name) {
-        Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
-    }
-
 }
